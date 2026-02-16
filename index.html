@@ -22,6 +22,7 @@
             align-items: center;
             justify-content: center;
             padding: 2rem;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         .container {
@@ -61,7 +62,7 @@
             border-radius: 8px;
             text-decoration: none;
             color: #f5f5f5;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .project-card:hover {
@@ -80,6 +81,7 @@
             background-color: #1f1f1f;
             border-radius: 8px;
             flex-shrink: 0;
+            transition: background-color 0.3s ease;
         }
 
         .project-info {
@@ -113,6 +115,81 @@
             color: #404040;
             font-size: 0.75rem;
             text-align: center;
+            transition: color 0.3s ease;
+        }
+
+        /* ── Light Mode Toggle ─────────────────────── */
+        .theme-toggle {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .theme-toggle button {
+            background: none;
+            border: 1px solid #2d2d2d;
+            border-radius: 20px;
+            color: #525252;
+            font-family: inherit;
+            font-size: 0.75rem;
+            padding: 0.4rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle button:hover {
+            border-color: #525252;
+            color: #737373;
+        }
+
+        /* ── Light Mode Overrides ──────────────────── */
+        body.light-mode {
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        body.light-mode .tagline {
+            color: #737373;
+        }
+
+        body.light-mode .project-card {
+            background-color: #ffffff;
+            border-color: #e0e0e0;
+            color: #1a1a1a;
+        }
+
+        body.light-mode .project-card:hover {
+            border-color: #369b5a;
+            background-color: #fafafa;
+        }
+
+        body.light-mode .project-icon {
+            background-color: #f0f0f0;
+        }
+
+        body.light-mode .project-desc {
+            color: #737373;
+        }
+
+        body.light-mode .project-arrow {
+            color: #b0b0b0;
+        }
+
+        body.light-mode .project-card:hover .project-arrow {
+            color: #369b5a;
+        }
+
+        body.light-mode .footer {
+            color: #b0b0b0;
+        }
+
+        body.light-mode .theme-toggle button {
+            border-color: #d0d0d0;
+            color: #999;
+        }
+
+        body.light-mode .theme-toggle button:hover {
+            border-color: #999;
+            color: #666;
         }
 
         @media (max-width: 480px) {
@@ -129,7 +206,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="assets/logo-light.svg" alt="cogs.tech" class="logo-img">
+            <img src="assets/logo-light.svg" alt="cogs.tech" class="logo-img" id="logo">
             <div class="tagline">projects by chris cogbill</div>
         </div>
 
@@ -153,9 +230,40 @@
             </a>
         </div>
 
+        <div class="theme-toggle">
+            <button id="theme-btn" onclick="toggleTheme()">turn on the lights</button>
+        </div>
+
         <div class="footer">
             &copy; 2026 cogs.tech
         </div>
     </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const logo = document.getElementById('logo');
+            const btn = document.getElementById('theme-btn');
+
+            body.classList.toggle('light-mode');
+
+            if (body.classList.contains('light-mode')) {
+                logo.src = 'assets/logo.svg';
+                btn.textContent = 'turn off the lights';
+                localStorage.setItem('theme', 'light');
+            } else {
+                logo.src = 'assets/logo-light.svg';
+                btn.textContent = 'turn on the lights';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Restore saved preference
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            document.getElementById('logo').src = 'assets/logo.svg';
+            document.getElementById('theme-btn').textContent = 'turn off the lights';
+        }
+    </script>
 </body>
 </html>
