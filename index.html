@@ -192,6 +192,51 @@
             color: #666;
         }
 
+        /* ── Expandable group ──────────────────────── */
+        .group {
+            border-radius: 8px;
+        }
+
+        .group > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .group > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .group-chevron {
+            color: #525252;
+            font-size: 1rem;
+            transition: transform 0.3s ease, color 0.2s ease;
+        }
+
+        .group[open] .group-chevron {
+            transform: rotate(180deg);
+        }
+
+        .group > summary:hover .group-chevron {
+            color: #369b5a;
+        }
+
+        .group-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1rem 0 0 0.75rem;
+            padding-left: 1.5rem;
+            border-left: 1px solid #2d2d2d;
+        }
+
+        body.light-mode .group-chevron {
+            color: #b0b0b0;
+        }
+
+        body.light-mode .group-items {
+            border-left-color: #e0e0e0;
+        }
+
         @media (max-width: 480px) {
             .logo {
                 font-size: 2rem;
@@ -220,20 +265,11 @@
                 <div class="project-arrow">&#8594;</div>
             </a>
 
-            <a href="https://fantasynfl.cogs.tech" class="project-card">
-                <div class="project-icon">&#127944;</div>
+            <a href="https://nownextlater.cogs.tech" class="project-card">
+                <div class="project-icon">&#128203;</div>
                 <div class="project-info">
-                    <div class="project-name">Fantasy NFL</div>
-                    <div class="project-desc">fantasynfl.cogs.tech</div>
-                </div>
-                <div class="project-arrow">&#8594;</div>
-            </a>
-
-            <a href="https://plpicker.cogs.tech" class="project-card">
-                <div class="project-icon">&#9917;</div>
-                <div class="project-info">
-                    <div class="project-name">PL Picker</div>
-                    <div class="project-desc">plpicker.cogs.tech</div>
+                    <div class="project-name">Now / Next / Later</div>
+                    <div class="project-desc">nownextlater.cogs.tech</div>
                 </div>
                 <div class="project-arrow">&#8594;</div>
             </a>
@@ -247,14 +283,44 @@
                 <div class="project-arrow">&#8594;</div>
             </a>
 
-            <a href="https://nownextlater.cogs.tech" class="project-card">
-                <div class="project-icon">&#128203;</div>
-                <div class="project-info">
-                    <div class="project-name">Now / Next / Later</div>
-                    <div class="project-desc">nownextlater.cogs.tech</div>
+            <details class="group">
+                <summary class="project-card">
+                    <div class="project-icon">&#127967;</div>
+                    <div class="project-info">
+                        <div class="project-name">Sports games</div>
+                        <div class="project-desc">3 prediction games</div>
+                    </div>
+                    <div class="group-chevron">&#9662;</div>
+                </summary>
+                <div class="group-items">
+                    <a href="https://plpicker.cogs.tech" class="project-card">
+                        <div class="project-icon">&#9917;</div>
+                        <div class="project-info">
+                            <div class="project-name">PL Picker</div>
+                            <div class="project-desc">plpicker.cogs.tech</div>
+                        </div>
+                        <div class="project-arrow">&#8594;</div>
+                    </a>
+
+                    <a href="https://fantasynfl.cogs.tech" class="project-card">
+                        <div class="project-icon">&#127944;</div>
+                        <div class="project-info">
+                            <div class="project-name">Fantasy NFL</div>
+                            <div class="project-desc">fantasynfl.cogs.tech</div>
+                        </div>
+                        <div class="project-arrow">&#8594;</div>
+                    </a>
+
+                    <a href="https://worldcupmadness.cogs.tech" class="project-card">
+                        <div class="project-icon">&#127942;</div>
+                        <div class="project-info">
+                            <div class="project-name">World Cup Madness</div>
+                            <div class="project-desc">worldcupmadness.cogs.tech</div>
+                        </div>
+                        <div class="project-arrow">&#8594;</div>
+                    </a>
                 </div>
-                <div class="project-arrow">&#8594;</div>
-            </a>
+            </details>
         </div>
 
         <div class="theme-toggle">
