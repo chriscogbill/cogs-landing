@@ -16,5 +16,8 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          # wrangler 4 supports assets-only Workers (no `main` entry-point);
+          # the action's default (wrangler 3) errors with "Missing entry-point".
+          wranglerVersion: "4.99.0"
           # command defaults to `wrangler deploy`, which reads wrangler.jsonc
           # and respects .assetsignore.
