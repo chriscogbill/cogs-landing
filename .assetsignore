@@ -1,0 +1,10 @@
+# Files in the assets directory that must NOT be published to the public Worker.
+# (wrangler.jsonc uses assets.directory: "./", i.e. the whole repo, so exclude dev/repo cruft.)
+.git/
+.wrangler/
+node_modules/
+.DS_Store
+.gitignore
+.assetsignore
+wrangler.jsonc
+*.log
