@@ -1,0 +1,20 @@
+name: Deploy to Cloudflare
+
+# Mirrors the Railway apps' "push to main → deploy" workflow.
+# Requires repo secret CLOUDFLARE_API_TOKEN (Cloudflare "Edit Cloudflare Workers" token).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          # command defaults to `wrangler deploy`, which reads wrangler.jsonc
+          # and respects .assetsignore.
